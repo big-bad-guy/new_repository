@@ -1,4 +1,4 @@
-def dfs(graph, start, visited=None, path=None):
+def dfs(graph, start, goal, visited=None, path=None):
     if visited is None:
         visited = set()
     if path is None:
@@ -8,12 +8,19 @@ def dfs(graph, start, visited=None, path=None):
     visited.add(start)
     path.append(start)
 
+    # Если достигнута целевая вершина
+    if start == goal:
+        return path
+
     # Рекурсивный обход соседних вершин
     for neighbor in graph[start]:
         if neighbor not in visited:
-            dfs(graph, neighbor, visited, path)
+            result = dfs(graph, neighbor, goal, visited, path)
+            if result: # Если путь найден
+                return result
 
-    return path
+    path.pop() # Если не найден путь через эту вершину, удаляем её из пути
+    return None
 
 def create_graph(edges):
     graph = {}
@@ -35,8 +42,14 @@ edges = [(4,2), (1, 3), (2, 4)]
 graph = create_graph(edges)
 
 # Стартовая вершина
-start_vertex = 1
+start_vertex = 2
+end_vertex = 4
 
 # Запуск алгоритма
-path = dfs(graph, start_vertex)
-print("Путь обхода: ", path)
+path = dfs(graph, start_vertex, end_vertex)
+
+if path:
+    print(f"Путь от вершины {start_vertex} до вершины {end_vertex}: {path}")
+    print(f"Длина пути: {len(path) - 1}")
+else:
+    print("Путь не найден")
