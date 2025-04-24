@@ -1,4 +1,7 @@
 def dfs(graph, start, goal, visited=None, path=None):
+    if start not in graph or goal not in graph:
+        raise ValueError(f"Одна или обе вершины {start} и {goal} не существуют в графе.")
+
     if visited is None:
         visited = set()
     if path is None:
@@ -48,8 +51,16 @@ end_vertex = 4
 # Запуск алгоритма
 path = dfs(graph, start_vertex, end_vertex)
 
-if path:
-    print(f"Путь от вершины {start_vertex} до вершины {end_vertex}: {path}")
-    print(f"Длина пути: {len(path) - 1}")
-else:
-    print("Путь не найден")
+try:
+    if path:
+        print(f"Путь от вершины {start_vertex} до вершины {end_vertex}: {path}")
+        print(f"Длина пути: {len(path) - 1}")
+    else:
+        print("Путь не найден")
+except ValueError as e:
+    print(f"Error: {e}")
+
+
+
+
+# Comment for task, part 2
