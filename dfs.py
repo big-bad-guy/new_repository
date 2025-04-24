@@ -59,3 +59,8 @@ try:
         print("Путь не найден")
 except ValueError as e:
     print(f"Error: {e}")
+
+
+
+
+# Comment for task, part 2
