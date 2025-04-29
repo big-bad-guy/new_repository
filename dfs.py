@@ -63,4 +63,8 @@ except ValueError as e:
 
 
 
+# Comment for task, part 2
+
+
+# Comment for task, part 3
 # Изменённый в удалённом репозитории комментарий, переведённый на русский язык
